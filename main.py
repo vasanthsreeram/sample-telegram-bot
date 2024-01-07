@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 import requests
 from dotenv import load_dotenv
 import logging
-logging.basicConfig(level=logging.error)
+logging.basicConfig(level=logging.ERROR)
 
 load_dotenv()  # This loads the environment variables from .env
 
