@@ -8,7 +8,8 @@ logging.basicConfig(level=logging.ERROR)
 load_dotenv()  # This loads the environment variables from .env
 
 
-API_KEY = os.environ.get("TELEGRAM_API_KEY")
+# API_KEY = os.environ.get("TELEGRAM_API_KEY")
+API_KEY = "6521636846:AAE7TmZnagfWQafUWC57MSELETXSITgeD88"
 logging.error("app started, api key is " + API_KEY)
 logging.info("app started, api key is " + API_KEY)
 print("app started, api key is " + API_KEY)
