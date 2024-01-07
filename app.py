@@ -1,33 +1,37 @@
+import os
 from fastapi import FastAPI, Request
+import requests
 
-
-# Install the required libraries
-
+API_KEY = os.environ.get("TELEGRAM_API_KEY")
 
 app = FastAPI()
 
 @app.post("/webhook")
-async def webhook(req:Request): # Handle incoming webhook requests from Telegram.
-    """
-    Args:
-        req (Request): The incoming request object.
+async def webhook(req: Request):
+    body = await req.json()
 
-    Returns:
-        None
-    """
+    if 'message' not in body:
+        return print('No message found', body)
 
-    
-    body = await req.json() # pulls the body of the message
-
-    if 'message' not in body: 
-        return print('No message found', body)  # Check if 'message' key exists in the request body
     bm = body['message']
 
-    if 'text' not in bm: 
-        return print('No text found', body)  # Check if 'text' key exists in the message body
+    if 'text' not in bm:
+        return print('No text found', body)
 
-    return print(bm)
+    chat_id = bm['chat']['id']
+    text = bm['text']
+
+    # Send echo message
+    url = f"https://api.telegram.org/bot{API_KEY}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": text
+    }
+    response = requests.post(url, json=payload)
+
+    return response.json()
 
 
+# Install the required libraries
 
 
