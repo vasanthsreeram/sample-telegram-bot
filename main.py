@@ -10,6 +10,8 @@ load_dotenv()  # This loads the environment variables from .env
 
 API_KEY = os.environ.get("TELEGRAM_API_KEY")
 logging.error("app started, api key is " + API_KEY)
+logging.info("app started, api key is " + API_KEY)
+print("app started, api key is " + API_KEY)
 app = FastAPI()
 
 @app.get("/")
