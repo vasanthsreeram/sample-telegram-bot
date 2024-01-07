@@ -12,6 +12,10 @@ API_KEY = os.environ.get("TELEGRAM_API_KEY")
 logging.error("app started, api key is " + API_KEY)
 app = FastAPI()
 
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+
 @app.post("/webhook")
 async def webhook(req: Request):
     logging.error("something is detected")
