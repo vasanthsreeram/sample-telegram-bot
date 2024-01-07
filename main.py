@@ -3,25 +3,25 @@ from fastapi import FastAPI, Request
 import requests
 from dotenv import load_dotenv
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.error)
 
 load_dotenv()  # This loads the environment variables from .env
 
 
 API_KEY = os.environ.get("TELEGRAM_API_KEY")
-logging.info("app started")
+logging.error("app started, api key is " + API_KEY)
 app = FastAPI()
 
 @app.post("/webhook")
 async def webhook(req: Request):
-    logging.info("something is detected")
+    logging.error("something is detected")
     body = await req.json()
     if 'message' not in body:
-        return logging.info('No message found', body)
+        return logging.error('No message found', body)
     bm = body['message']
     if 'text' not in bm:
-        return logging.info('No text found', body)
-    logging.info("valid text wow")
+        return logging.error('No text found', body)
+    logging.error("valid text wow")
     chat_id = bm['chat']['id']
     text = bm['text']
     # Send echo message
@@ -31,5 +31,5 @@ async def webhook(req: Request):
         "text": text
     }
     response = requests.post(url, json=payload)
-    logging.info("sent back")
+    logging.error("sent back")
     return response.json()
