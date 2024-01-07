@@ -4,10 +4,12 @@ import requests
 
 API_KEY = os.environ.get("TELEGRAM_API_KEY")
 
+print("app started")
 app = FastAPI()
 
 @app.post("/webhook")
 async def webhook(req: Request):
+    print("something is detected")
     body = await req.json()
 
     if 'message' not in body:
@@ -17,7 +19,7 @@ async def webhook(req: Request):
 
     if 'text' not in bm:
         return print('No text found', body)
-
+    print("valid text wow")
     chat_id = bm['chat']['id']
     text = bm['text']
 
@@ -28,10 +30,9 @@ async def webhook(req: Request):
         "text": text
     }
     response = requests.post(url, json=payload)
-
+    print("sent back")
     return response.json()
 
 
 # Install the required libraries
-
 
