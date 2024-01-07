@@ -1,12 +1,15 @@
 import os
 from fastapi import FastAPI, Request
 import requests
+from dotenv import load_dotenv
+load_dotenv()  # This loads the environment variables from .env
+
 
 API_KEY = os.environ.get("TELEGRAM_API_KEY")
 print("app started")
 app = FastAPI()
-@app.post("/webhook")
 
+@app.post("/webhook")
 async def webhook(req: Request):
     print("something is detected")
     body = await req.json()
