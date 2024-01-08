@@ -3,7 +3,22 @@ from fastapi import FastAPI, Request
 import requests
 from dotenv import load_dotenv
 import logging
-logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger('azure.mgmt.resource')
+
+# Set the logging level for all azure-storage-* libraries
+logger = logging.getLogger('azure.storage')
+logger.setLevel(logging.INFO)
+
+# Set the logging level for all azure-* libraries
+logger = logging.getLogger('azure')
+logger.setLevel(logging.ERROR)
+
+print(
+    f"Logger enabled for ERROR={logger.isEnabledFor(logging.ERROR)}, "
+    f"WARNING={logger.isEnabledFor(logging.WARNING)}, "
+    f"INFO={logger.isEnabledFor(logging.INFO)}, "
+    f"DEBUG={logger.isEnabledFor(logging.DEBUG)}"
+)
 
 load_dotenv()  # This loads the environment variables from .env
 
