@@ -7,7 +7,7 @@ fastapi==0.108.0
 gunicorn==21.2.0
 h11==0.14.0
 idna==3.6
-logging==0.4.9.6
+# logging==0.4.9.6
 packaging==23.2
 pydantic==2.5.3
 pydantic_core==2.14.6
