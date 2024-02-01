@@ -28,5 +28,5 @@ async def webhook(req: Request):
         "text": text+str(chat_id)
     }
     response = requests.post(url, json=payload)
-    print("sent back")
+    print("sent back",payload,response)
     return response.json()
