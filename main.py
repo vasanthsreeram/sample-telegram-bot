@@ -17,9 +17,10 @@ async def webhook(req: Request):
     bm = body['message']
     if 'text' not in bm:
         return print('No text found', body)
-    print("valid text wow")
+    print("valid text wow", bm)
     chat_id = bm['chat']['id']
     text = bm['text']
+    print("valid text wow", text,chat_id)
     # Send echo message
     url = f"https://api.telegram.org/bot{API_KEY}/sendMessage"
     payload = {
